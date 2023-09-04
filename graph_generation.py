@@ -61,6 +61,6 @@ for i in range(num_graphs):
     # Append the image and the degree to the X and Y arrays
     X.append(img)
     Y.append(degree)
-
+X = [str(arr.tolist()) for arr in X]
 dataset = pd.DataFrame(data={'Graph': X, 'Degree': Y})
 dataset.to_csv(f"{directory}dataset.csv")
