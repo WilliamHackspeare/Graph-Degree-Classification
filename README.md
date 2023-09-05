@@ -26,8 +26,8 @@ This project aims to classify polynomial graphs based on their degrees using Con
 Clone the repository and navigate to the project directory. Install the required packages using pip:
 
 ```bash
-git clone <repository_url>
-cd <repository_directory>
+git clone https://github.com/WilliamHackspeare/Graph-Degree-Classification.git
+cd Graph-Degree-Classification
 pip install -r requirements.txt
 ```
 
