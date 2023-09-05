@@ -8,10 +8,10 @@ import cv2
 np.random.seed(42)
 
 # Directory to save the graphs
-directory = os.path.abspath(os.getcwd())+"\\content\\"
+directory = os.path.abspath(os.getcwd())+"/content/"
 os.makedirs(directory,exist_ok=True)
-os.makedirs(directory+"graphs\\initial\\",exist_ok=True)
-os.makedirs(directory+"graphs\\processed\\",exist_ok=True)
+os.makedirs(directory+"graphs/initial/",exist_ok=True)
+os.makedirs(directory+"graphs/processed/",exist_ok=True)
 
 # The arrays to hold the images and the labels
 X = []
@@ -39,11 +39,11 @@ for i in range(num_graphs):
     plt.plot(x, y)
     plt.title(f"Polynomial of degree {degree}")
     plt.grid(True)
-    plt.savefig(f"{directory}graphs\\initial\\graph_{i}.png")
+    plt.savefig(f"{directory}graphs/initial/graph_{i}.png")
     plt.close()
 
     # Read the saved image
-    img = cv2.imread(f"{directory}graphs\\initial\\graph_{i}.png", cv2.IMREAD_GRAYSCALE)
+    img = cv2.imread(f"{directory}graphs/initial/graph_{i}.png", cv2.IMREAD_GRAYSCALE)
     
     # Resize the image to a fixed size (100x100)
     img = cv2.resize(img, (100, 100))
@@ -56,11 +56,11 @@ for i in range(num_graphs):
     img = img / 255.0
     plt.figure()
     plt.imshow(img,cmap="gray")
-    plt.savefig(f"{directory}graphs\\processed\\graph_{i}.png")
+    plt.savefig(f"{directory}graphs/processed/graph_{i}.png")
     plt.close()
     # Append the image and the degree to the X and Y arrays
     X.append(img)
     Y.append(degree)
-X = [str(arr.tolist()) for arr in X]
+X = [arr.tolist() for arr in X]
 dataset = pd.DataFrame(data={'Graph': X, 'Degree': Y})
-dataset.to_csv(f"{directory}dataset.csv")
+dataset.to_pickle(f"{directory}dataset.pkl")

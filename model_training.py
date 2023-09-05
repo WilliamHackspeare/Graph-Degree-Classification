@@ -6,9 +6,9 @@ from sklearn.model_selection import train_test_split
 import os
 
 # Load the data
-data = pd.read_csv(os.path.abspath(os.getcwd())+'/content/dataset.csv')
-X = np.array(data['Graph'].values)
-Y = np.array(data['Degree'].values)
+data = pd.read_pickle(os.path.abspath(os.getcwd())+'/content/dataset.pkl')
+X = np.array([np.asarray(x) for x in data['Graph'].values])
+Y = np.array([np.asarray(x) for x in data['Degree'].values])
 
 # Split the data into training and testing sets
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=42)
